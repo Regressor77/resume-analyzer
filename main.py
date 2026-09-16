@@ -1,11 +1,10 @@
 from analyzer import analyze_resume
 from job_parser import extract_skills
+from skills import known_skills
 
 job_description = input("Enter Job Description : ")
 
 resume_text = input("Enter the resume text : ")
-
-known_skills = ["Python", "Java", "SQL", "Django", "Flask", "Pandas", "Git"]
 
 required_skills = extract_skills(job_description,known_skills)
 
