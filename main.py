@@ -1,10 +1,13 @@
 from analyzer import analyze_resume
 from job_parser import extract_skills
 from skills import known_skills
+from pathlib import Path
 
-job_description = input("Enter Job Description : ")
+resume_path = Path(input("Enter resume file name/path : "))
+job_description_path = Path(input("Enter job description file name/path : "))
 
-resume_text = input("Enter the resume text : ")
+resume_text = resume_path.read_text()
+job_description = job_description_path.read_text()
 
 required_skills = extract_skills(job_description,known_skills)
 
@@ -19,16 +22,16 @@ else:
         missing_skills = "✗ " + "\n✗ ".join(analysis['missing'])
 
         print(f"""
-        ================================
-                RESUME ANALYZER
-        ================================
+================================
+        RESUME ANALYZER
+================================
 
-        Found skills:
-        {found_skills}
+Found skills:
+{found_skills}
 
-        Missing skills:
-        {missing_skills}
+Missing skills:
+{missing_skills}
 
-        Match score: {analysis["score"]}%
-        ================================
-        """)
+Match score: {analysis["score"]}%
+================================
+""")
